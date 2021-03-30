@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Roles from "./Components/Roles";
+import Roll from "./Components/Roll";
 
 const Playing = ({ socket, setGame, game, myID }) => {
   let myPos = game.position;
@@ -14,6 +15,7 @@ const Playing = ({ socket, setGame, game, myID }) => {
       <p>Game ID: {game.gameID}</p>
       <Roles socket={socket} setGame={setGame} game={game} myID={myID} />
       <p>{myPos}</p>
+      <Roll socket={socket} myID={myID} game={game} />
     </div>
   );
 };
