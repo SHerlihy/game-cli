@@ -11,8 +11,9 @@ const Playing = ({ socket, setGame, game, myID }) => {
 
   return (
     <div>
-      <p>{myPos}</p>
+      <p>Game ID: {game.gameID}</p>
       <Roles socket={socket} setGame={setGame} game={game} myID={myID} />
+      <p>{myPos}</p>
     </div>
   );
 };

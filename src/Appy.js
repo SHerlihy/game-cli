@@ -12,16 +12,19 @@ const Appy = () => {
   const socket = io("http://localhost:8080");
   return (
     <div>
-      <NewGame
-        setMyID={setMyID}
-        myID={myID}
-        setGame={setGame}
-        game={game}
-        setInputID={setInputID}
-        inputID={inputID}
-        socket={socket}
-      />
-      <Playing setGame={setGame} game={game} socket={socket} myID={myID} />
+      {myID ? (
+        <Playing setGame={setGame} game={game} socket={socket} myID={myID} />
+      ) : (
+        <NewGame
+          setMyID={setMyID}
+          myID={myID}
+          setGame={setGame}
+          game={game}
+          setInputID={setInputID}
+          inputID={inputID}
+          socket={socket}
+        />
+      )}
     </div>
   );
 };
