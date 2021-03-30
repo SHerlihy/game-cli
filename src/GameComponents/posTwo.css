@@ -1,0 +1,40 @@
+.pos-two {
+  height: 50vh;
+  width: 100%;
+  background: rgb(210, 190, 0);
+  position: relative;
+}
+
+.two__left-arm {
+  position: absolute;
+  background: black;
+  height: 55%;
+  width: 5%;
+  left: 60%;
+  transform: rotate(20deg);
+  top: -5%;
+}
+.two__left-hand {
+  position: absolute;
+  background: black;
+  height: 5vw;
+  width: 5vw;
+  left: 55%;
+  top: 50%;
+}
+.two__right-arm {
+  position: absolute;
+  background: white;
+  height: 55%;
+  width: 5%;
+  left: 40%;
+  bottom: 0;
+}
+.two__right-hand {
+  background: white;
+  position: absolute;
+  height: 5vw;
+  width: 5vw;
+  left: 45%;
+  top: 40%;
+}
