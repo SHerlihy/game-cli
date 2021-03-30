@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import RoleButtons from "./RoleButtons";
+import RoleButtons from "./prev/RoleButtons";
 import io from "socket.io-client";
-import Game from "./GameComponents/Game.js";
-import Roll from "./Roll";
+import Game from "./prev/GameComponents/Game.js";
+import Roll from "./prev/Roll";
 
 const socket = io("http://localhost:8080");
 
