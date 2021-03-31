@@ -7,9 +7,10 @@ const Roles = ({ socket, setGame, game, myID }) => {
     socket.emit("set-role", { id, myID, role });
   };
 
-  socket.on("setting-role", (gameUpdate) => {
+  socket.on("update-game", (gameUpdate) => {
     setGame(gameUpdate);
   });
+
   return (
     <div>
       <button onClick={handleRole} value="p1">

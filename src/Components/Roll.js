@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 
-const Roll = ({ socket, myID, game }) => {
+const Roll = ({ socket, myID, game, setGame }) => {
   const [total, setTotal] = useState();
-  const gameID = game.gameID;
-  const submitTotal = () => {
+
+  const submitTotal = (e) => {
+    e.preventDefault();
     const subTotal = Number(total);
-    socket.emit("submit-total", { subTotal, myID, gameID });
+    const cliID = myID;
+    const gameID = game.gameID;
+    socket.emit("submit-total", { total, cliID, gameID });
   };
 
   const handleTotal = (e) => {
     setTotal(e.target.value);
   };
+
+  socket.on("update-game", (gameUpdate) => {
+    console.log("playing");
+    setGame(gameUpdate);
+  });
 
   return (
     <div>

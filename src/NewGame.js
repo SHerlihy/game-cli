@@ -29,9 +29,6 @@ const NewGame = ({
 
   socket.on("joining-game", ({ joinGame }) => {
     const x = joinGame.clients.length;
-    console.log(joinGame.clients);
-    console.log(joinGame.clients[x]);
-    console.log(joinGame.clients[x - 1]);
 
     setMyID(joinGame.clients[x - 1]);
     setGame(joinGame);
