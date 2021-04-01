@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Roles from "./Components/Roles";
-import Roll from "./Components/Roll";
+import Roll from "./Components/Roll/Roll";
 
 const Playing = ({ socket, setGame, game, myID }) => {
   socket.on("update-game", (gameUpdate) => {
-    console.log("playing");
     setGame(gameUpdate);
   });
-
-  console.log(game[myID] === "p2");
 
   const myPos = () => {
     if (game[myID] === "p2") {
@@ -20,14 +17,6 @@ const Playing = ({ socket, setGame, game, myID }) => {
       return game.position;
     }
   };
-
-  // useEffect(() => {
-  //   console.log("useEffect");
-  //   if (game[myID] === "p2") {
-  //     let posDiff = game.position - 4;
-  //     myPos = game.position - posDiff;
-  //   }
-  // }, [game]);
 
   return (
     <div>

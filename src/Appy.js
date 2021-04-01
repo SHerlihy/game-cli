@@ -6,8 +6,6 @@ import io from "socket.io-client";
 const socket = io("http://localhost:8080");
 
 const Appy = () => {
-  const [player, setPlayer] = useState({ total: null, role: "" });
-  const [pos, setPos] = useState(3);
   const [game, setGame] = useState({});
   const [myID, setMyID] = useState();
   const [inputID, setInputID] = useState();
