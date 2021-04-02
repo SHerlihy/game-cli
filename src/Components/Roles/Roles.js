@@ -1,6 +1,12 @@
 import React from "react";
+import io from "socket.io-client";
 
 const Roles = ({ socket, setGame, game, myID }) => {
+  //for testing...would love to have something in the test file instead
+  if (process.env.NODE_ENV === "test") {
+    socket = io("");
+  }
+
   const handleRole = (e) => {
     const id = game.gameID;
     const role = e.target.value;

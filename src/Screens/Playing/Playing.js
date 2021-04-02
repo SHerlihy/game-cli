@@ -1,6 +1,6 @@
 import React from "react";
-import Roles from "./Components/Roles";
-import Roll from "./Components/Roll/Roll";
+import Roles from "../../Components/Roles/Roles";
+import Roll from "../../Components/Roll/Roll";
 
 const Playing = ({ socket, setGame, game, myID }) => {
   socket.on("update-game", (gameUpdate) => {
@@ -11,7 +11,6 @@ const Playing = ({ socket, setGame, game, myID }) => {
     if (game[myID] === "p2") {
       const posDiff = 3 - game.position;
       const newPos = 3 + posDiff;
-      console.log(newPos);
       return newPos;
     } else {
       return game.position;

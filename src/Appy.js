@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Playing from "./Playing";
-import NewGame from "./NewGame";
+import Playing from "./Screens/Playing/Playing";
+import NewGame from "./Screens/NewGame/NewGame";
 import io from "socket.io-client";
+import Dice from "./Components/Dice/Dice";
 
 const socket = io("http://localhost:8080");
 

@@ -1,7 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./prev/App";
-import TestingIO from "./TestingIO";
 import "./index.css";
 import Appy from "./Appy";
 

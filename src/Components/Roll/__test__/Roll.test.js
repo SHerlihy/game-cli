@@ -37,4 +37,14 @@ describe("Testing connection", () => {
     fireEvent.change(input, { target: { value: "8" } });
     await (() => getByText("8"));
   });
+
+  //not sure how to get test to submit from two diff clients
+  // test("submitting roll works", async () => {
+  //   const { getByText, getByTestId } = render(<Roll />);
+
+  //   const input = getByTestId("rollinput");
+  //   const input = getByTestId("rollsubmit");
+  //   fireEvent.change(input, { target: { value: "8" } });
+  //   await (() => getByText("8"));
+  // });
 });
