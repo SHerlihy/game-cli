@@ -18,13 +18,11 @@ const Roles = ({ socket, setGame, game, myID }) => {
   };
 
   socket.on("role-update", ({ gameUpdate }) => {
-    console.log("role update");
-    console.log(gameUpdate);
     setGame(gameUpdate);
   });
 
   return (
-    <div>
+    <div className="roles">
       <button
         onClick={handleRole}
         className={game[myID] === "p1" ? "selected" : "unselected"}

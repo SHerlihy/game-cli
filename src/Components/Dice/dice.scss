@@ -1,0 +1,24 @@
+.dice {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  .twenties {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > * {
+      margin: 5px;
+    }
+  }
+  .fours {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > * {
+      margin: 5px;
+    }
+  }
+}

@@ -1,7 +1,29 @@
-.selected {
-  background: chartreuse;
+@import url(c:\Users\Boris\projects\game\client\src\Components\Dice\dice.css);
+.roll {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: palevioletred;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.unselected {
-  background: chocolate;
+.roll .right-side {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
+/*# sourceMappingURL=roll.css.map */

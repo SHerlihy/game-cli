@@ -5,9 +5,7 @@ const DieRoll = ({ sumRoll, rolled }) => {
   const [unselected, setUnselected] = useState(true);
 
   const selected = () => {
-    setUnselected((prev) => {
-      return !prev;
-    });
+    setUnselected((prev) => !prev);
     sumRoll(rolled, unselected);
   };
   return (

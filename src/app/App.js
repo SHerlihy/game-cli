@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Playing from "./Screens/Playing/Playing";
-import NewGame from "./Screens/NewGame/NewGame";
+import Playing from "../Screens/Playing/Playing";
+import NewGame from "../Screens/NewGame/NewGame";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:8080");
 
-const Appy = () => {
+const App = () => {
   const [game, setGame] = useState({});
-  const [myID, setMyID] = useState();
-  const [inputID, setInputID] = useState();
+  const [myID, setMyID] = useState("");
+  const [inputID, setInputID] = useState("");
 
   // socket.on("disconnect", (reason) => {
   //   if (reason === "io server disconnect") {
@@ -52,7 +52,7 @@ const Appy = () => {
     );
   } else {
     return (
-      <div>
+      <div className="app">
         {myID ? (
           <Playing
             setGame={setGame}
@@ -77,4 +77,4 @@ const Appy = () => {
   }
 };
 
-export default Appy;
+export default App;

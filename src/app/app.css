@@ -1,0 +1,8 @@
+@import url(c:\Users\Boris\projects\game\client\src\Screens\NewGame\newGame.css);
+@import url(c:\Users\Boris\projects\game\client\src\Screens\Playing\playing.css);
+.app {
+  min-height: 100vh;
+  min-width: 100%;
+  background-color: palegreen;
+}
+/*# sourceMappingURL=app.css.map */
