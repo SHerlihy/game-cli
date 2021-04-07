@@ -10,11 +10,6 @@ const Playing = ({ socket, setGame, game, myID, myPos }) => {
     athletics: "+0",
     save: "+0",
   });
-  // socket.on("update-game", ({ gameUpdate, resetting }) => {
-  //   console.log(`are we resetting ${resetting}`);
-  //   console.log(`do we have a game obj ${gameUpdate}`);
-  //   setGame(gameUpdate);
-  // });
 
   return (
     <div className="playing">
