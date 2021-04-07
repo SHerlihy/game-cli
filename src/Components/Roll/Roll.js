@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import Dice from "../Dice/Dice";
 import "./roll.css";
@@ -26,17 +26,22 @@ const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
   // likely creating multiple listeners due to being inside a component that is continually re-rendering
   // can't move outside component to mitigate until something to externally manage state is implemented
 
-  socket.on("roll-update", ({ gameUpdate, resetting }) => {
-    setGame(gameUpdate);
-    console.log("reset");
-    if (resetting) {
+  useEffect(() => {
+    socket.on("roll-update", ({ gameUpdate, resetting }) => {
+      setGame(gameUpdate);
       console.log("reset");
-      setSum(0);
-      setSubbed("0");
-      setFours([]);
-      setTwenties([]);
-    }
-  });
+      if (resetting) {
+        console.log("reset");
+        setSum(0);
+        setSubbed("0");
+        setFours([]);
+        setTwenties([]);
+      }
+    });
+    // return () => {
+    //   cleanup
+    // }
+  }, []);
 
   const statToUse = () => {
     if (myPos === 2) {
