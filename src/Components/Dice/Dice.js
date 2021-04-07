@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Roll20 from "../Roll20/Roll20";
 import DieRoll from "./DieRoll/DieRoll";
 const { v4: uuidv4 } = require("uuid");
 
@@ -29,13 +30,7 @@ const Dice = ({ setSum, twenties, setTwenties, fours, setFours }) => {
 
   return (
     <div className="dice">
-      <div className="twenties">
-        <button onClick={addTwenty}>20</button>
-
-        {twenties.map((el) => {
-          return <DieRoll key={el[0]} sumRoll={sumRoll} rolled={el[1]} />;
-        })}
-      </div>
+      <Roll20 addTwenty={addTwenty} twenties={twenties} sumRoll={sumRoll} />
       <div className="fours">
         <button onClick={addFour}>4</button>
 

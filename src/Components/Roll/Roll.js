@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import Dice from "../Dice/Dice";
 import "./roll.css";
 
-const Roll = ({ stats, socket, myID, game, setGame }) => {
+const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
   const [sum, setSum] = useState(0);
   const [subbed, setSubbed] = useState("0");
   const [twenties, setTwenties] = useState([]);
@@ -17,7 +17,8 @@ const Roll = ({ stats, socket, myID, game, setGame }) => {
   const submitTotal = () => {
     const cliID = myID;
     const gameID = game.gameID;
-    const total = `${sum}`;
+    const combo = Number(sum) + Number(statToUse());
+    const total = `${combo}`;
     setSubbed(total);
     socket.emit("submit-total", { total, cliID, gameID });
   };
@@ -37,6 +38,17 @@ const Roll = ({ stats, socket, myID, game, setGame }) => {
     }
   });
 
+  const statToUse = () => {
+    if (myPos === 2) {
+      const scoreMod = parseInt((Number(stats.score) - 10) / 2);
+      return `${scoreMod}`;
+    }
+    if (myPos === 1) {
+      return stats.save;
+    }
+    return stats.athletics;
+  };
+
   return (
     <div className="roll">
       <Dice
@@ -48,7 +60,7 @@ const Roll = ({ stats, socket, myID, game, setGame }) => {
       />
       <div className="right-side">
         <p className="sum">
-          {sum} {stats.score}
+          {sum} {statToUse()}
         </p>
         <button
           onClick={submitTotal}

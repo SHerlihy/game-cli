@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./stats.css";
 
 const Stats = ({ setStats }) => {
-  const [score, setScore] = useState("+0");
+  const [score, setScore] = useState("10");
   const [athletics, setAthletics] = useState("+0");
   const [save, setSave] = useState("+0");
   const changeScore = (e) => {
     setScore(e.target.value);
   };
   const changeAthletics = (e) => {
-    setScore(e.target.value);
+    setAthletics(e.target.value);
   };
   const changeSave = (e) => {
-    setScore(e.target.value);
+    setSave(e.target.value);
   };
   useEffect(() => {
     setStats({

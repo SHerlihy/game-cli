@@ -37,20 +37,11 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 25vw;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: aqua;
-}
-
-.playing .game .position {
-  margin: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100%;
-  width: 80%;
-  background-color: orange;
 }
 /*# sourceMappingURL=playing.css.map */

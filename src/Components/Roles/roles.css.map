@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,MAAM,CAAC;EACL,YAAY,EAAE,IAAI;CACnB;;AAED,AAAA,SAAS,CAAC;EACR,UAAU,EAAE,UAAU;CACvB",
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACL,YAAY,EAAE,IAAI;CACnB;;AAED,AAAA,SAAS,CAAC;EACR,UAAU,EAAE,iCAAiC;CAC9C",
     "sources": [
         "roles.scss"
     ],

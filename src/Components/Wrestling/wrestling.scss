@@ -1,0 +1,124 @@
+@mixin player {
+  position: absolute;
+  background-color: brown;
+  width: 20px;
+  left: 90%;
+  bottom: 15%;
+  transform-origin: center bottom;
+}
+@mixin opponent {
+  position: absolute;
+  background-color: green;
+  width: 20px;
+  left: 10%;
+  top: 15%;
+  transform-origin: center top;
+}
+@mixin position($angle, $length) {
+  height: $length;
+  transform: rotate($angle);
+}
+
+.wrestle-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: indigo;
+  .wrestling {
+    width: 90vh;
+    height: 90vh;
+    position: relative;
+    margin: 0;
+    display: flex;
+    background-color: orange;
+    overflow: hidden;
+    .centerline {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      height: 2px;
+      background-color: grey;
+    }
+
+    .o-bicep {
+      position: absolute;
+      background-color: green;
+      height: 15%;
+      width: 20px;
+      left: 10%;
+      top: 0;
+    }
+    .p-bicep {
+      position: absolute;
+      background-color: brown;
+      height: 15%;
+      width: 20px;
+      left: 90%;
+      bottom: 0;
+    }
+
+    .o-three {
+      @include opponent();
+      @include position(-45deg, 55%);
+    }
+    .p-three {
+      @include player();
+      @include position(-45deg, 55%);
+    }
+    .p-four {
+      @include player();
+      @include position(-60deg, 55%);
+    }
+    .o-two {
+      @include opponent();
+      @include position(-30deg, 55%);
+    }
+    .p-five {
+      @include player();
+      @include position(-75deg, 65%);
+    }
+    .o-one {
+      @include opponent();
+      @include position(-15deg, 60%);
+    }
+    .p-six {
+      @include player();
+      @include position(-90deg, 78%);
+    }
+    .o-zero {
+      @include opponent();
+      @include position(0deg, 75%);
+    }
+
+    .o-four {
+      @include opponent();
+      @include position(-60deg, 60%);
+    }
+    .p-two {
+      @include player();
+      @include position(-30deg, 55%);
+    }
+    .o-five {
+      @include opponent();
+
+      @include position(-75deg, 65%);
+    }
+    .p-one {
+      @include player();
+
+      @include position(-15deg, 60%);
+    }
+    .o-six {
+      @include opponent();
+
+      @include position(-90deg, 78%);
+    }
+    .p-zero {
+      @include player();
+
+      @include position(0deg, 75%);
+    }
+  }
+}

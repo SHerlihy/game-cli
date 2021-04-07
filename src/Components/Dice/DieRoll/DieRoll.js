@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DieRoll.css";
 
-const DieRoll = ({ sumRoll, rolled }) => {
+const DieRoll = ({ preSelect, sumRoll, rolled }) => {
   const [unselected, setUnselected] = useState(true);
 
   const selected = () => {
     setUnselected((prev) => !prev);
     sumRoll(rolled, unselected);
   };
+
+  useEffect(() => {
+    if (preSelect) {
+      selected();
+    }
+  }, []);
+
   return (
     <div>
       <button

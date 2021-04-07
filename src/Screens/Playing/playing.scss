@@ -23,15 +23,9 @@
     height: 90vh;
     .play-station {
       display: flex;
+      width: 25vw;
       flex-direction: column;
       background-color: aqua;
-    }
-    .position {
-      margin: 0;
-      display: flex;
-      height: 100%;
-      width: 80%;
-      background-color: orange;
     }
   }
 }

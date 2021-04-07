@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Roles from "../../Components/Roles/Roles";
 import Roll from "../../Components/Roll/Roll";
 import Stats from "../../Components/Stats/Stats";
+import Wrestling from "../../Components/Wrestling/Wrestling";
 
 const Playing = ({ socket, setGame, game, myID, myPos }) => {
   const [stats, setStats] = useState({
-    score: "+0",
+    score: "10",
     athletics: "+0",
     save: "+0",
   });
@@ -22,10 +23,11 @@ const Playing = ({ socket, setGame, game, myID, myPos }) => {
         <p className="gameID">Game ID: {game.gameID}</p>
       </div>
       <div className="game">
-        <p className="position">{myPos}</p>
+        <Wrestling myPos={myPos} />
         <div className="play-station">
           <Stats setStats={setStats} />
           <Roll
+            myPos={myPos}
             stats={stats}
             socket={socket}
             myID={myID}

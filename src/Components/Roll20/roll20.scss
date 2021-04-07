@@ -1,0 +1,36 @@
+.roll20 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: indigo;
+  .normal {
+    width: 80%;
+  }
+  .mods {
+    width: 80%;
+    > * {
+      width: 50%;
+    }
+  }
+  .do-roll {
+    width: 80%;
+  }
+  .highlight {
+    background-color: lawngreen;
+  }
+  .plain {
+    background-color: lightcoral;
+  }
+  .twenties {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    > * {
+      margin: 5px;
+    }
+  }
+}
