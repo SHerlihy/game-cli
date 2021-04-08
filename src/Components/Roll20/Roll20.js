@@ -2,12 +2,31 @@ import React, { useState, useEffect } from "react";
 import DieRoll from "../Dice/DieRoll/DieRoll";
 import "./roll20.css";
 
-const Roll20 = ({ addTwenty, twenties, sumRoll }) => {
+const Roll20 = ({ addTwenty, twenties, setTwenties, sumRoll }) => {
   const [rollWith, setRollWith] = useState({
     normal: true,
     advantage: false,
     disadvantage: false,
   });
+  const [deselect, setDeselect] = useState(false);
+
+  // const preSelectedRoll = () => {
+  //   if (rollWith.advantage) {
+  //     const higher = twenties.reduce((acc, red) => {
+  //       acc[1] > red[1] ? acc : red;
+  //     });
+  //     return higher[0];
+  //   }
+  //   if (rollWith.disadvantage) {
+  //     const lower = twenties.reduce((acc, red) => {
+  //       acc[1] < red[1] ? acc : red;
+  //     });
+  //     return lower[0];
+  //   }
+  //   if (rollWith.normal) {
+  //     return twenties[0][0];
+  //   }
+  // };
 
   const rollWithClick = (rolling) => {
     if (rolling === "advantage") {
@@ -33,7 +52,20 @@ const Roll20 = ({ addTwenty, twenties, sumRoll }) => {
     }
   };
 
+  const deductPrev20 = () => {
+    setDeselect((prev) => !prev);
+  };
+
   const doubleRoll = () => {
+    // let deducted = false;
+    // if (twenties !== []) {
+    //   deductPrev20();
+    //   deducted = true;
+    //   if (twenties !== [] && deducted) {
+    //     setTwenties(() => []);
+    //   }
+    // }
+
     addTwenty();
     addTwenty();
   };
@@ -92,7 +124,17 @@ const Roll20 = ({ addTwenty, twenties, sumRoll }) => {
           Disadvantage
         </button>
       </div>
-      <button onClick={doubleRoll} className="do-roll">
+      <button
+        onClick={() => {
+          doubleRoll();
+          deductPrev20();
+          // if (twenties !== []) {
+          //   console.log("firin remove");
+          //   setTwenties([]);
+          // }
+        }}
+        className="do-roll"
+      >
         Roll 20
       </button>
       <div className="twenties">
@@ -112,13 +154,17 @@ const Roll20 = ({ addTwenty, twenties, sumRoll }) => {
           return (
             <DieRoll
               preSelect={preSelect}
+              deselect={deselect}
               key={el[0]}
               sumRoll={sumRoll}
               rolled={el[1]}
+              setTwenties={setTwenties}
+              twenties={twenties}
             />
           );
         })}
       </div>
+      <button onClick={deductPrev20}>deselect</button>
     </div>
   );
 };

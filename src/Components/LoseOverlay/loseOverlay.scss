@@ -1,0 +1,12 @@
+.lose-overlay {
+  position: fixed;
+  color: aqua;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

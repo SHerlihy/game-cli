@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import "./roles.css";
 
@@ -17,9 +17,16 @@ const Roles = ({ socket, setGame, game, myID }) => {
     socket.emit("set-role", { id, myID, role });
   };
 
-  socket.on("role-update", ({ gameUpdate }) => {
-    setGame(gameUpdate);
-  });
+  const subToRoleUpdate = useRef(false);
+
+  useEffect(() => {
+    if (!subToRoleUpdate.current) {
+      socket.on("role-update", ({ gameUpdate }) => {
+        setGame(gameUpdate);
+      });
+      subToRoleUpdate.current = true;
+    }
+  }, []);
 
   return (
     <div className="roles">

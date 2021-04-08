@@ -13,23 +13,46 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: indigo;
 }
 
 .roll20 .normal {
   width: 80%;
+  border: none;
+  border-radius: 5px 5px 0 0;
+}
+
+.roll20 .normal:focus {
+  outline-style: none;
 }
 
 .roll20 .mods {
   width: 80%;
+  padding-top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .roll20 .mods > * {
-  width: 50%;
+  width: 49.5%;
+  border: none;
+}
+
+.roll20 .mods > *:focus {
+  outline-style: none;
 }
 
 .roll20 .do-roll {
   width: 80%;
+  border: none;
+  border-radius: 0 0 5px 5px;
+}
+
+.roll20 .do-roll:focus {
+  outline-style: none;
 }
 
 .roll20 .highlight {

@@ -30,7 +30,12 @@ const Dice = ({ setSum, twenties, setTwenties, fours, setFours }) => {
 
   return (
     <div className="dice">
-      <Roll20 addTwenty={addTwenty} twenties={twenties} sumRoll={sumRoll} />
+      <Roll20
+        addTwenty={addTwenty}
+        twenties={twenties}
+        setTwenties={setTwenties}
+        sumRoll={sumRoll}
+      />
       <div className="fours">
         <button onClick={addFour}>4</button>
 

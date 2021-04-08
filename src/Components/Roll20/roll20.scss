@@ -4,18 +4,34 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: indigo;
   .normal {
     width: 80%;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    &:focus {
+      outline-style: none;
+    }
   }
   .mods {
     width: 80%;
+    padding-top: 0;
+    display: flex;
+    justify-content: space-between;
     > * {
-      width: 50%;
+      width: 49.5%;
+      border: none;
+      &:focus {
+        outline-style: none;
+      }
     }
   }
   .do-roll {
     width: 80%;
+    border: none;
+    border-radius: 0 0 5px 5px;
+    &:focus {
+      outline-style: none;
+    }
   }
   .highlight {
     background-color: lawngreen;

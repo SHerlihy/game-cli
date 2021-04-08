@@ -4,6 +4,9 @@
 .playing {
   width: 100%;
   height: 100%;
+  background: #191919;
+  color: #cdcdcd;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .playing .top-play {
@@ -18,11 +21,9 @@
           justify-content: space-between;
   width: 100%;
   height: 10vh;
-  background-color: aquamarine;
 }
 
 .playing .top-play .gameID {
-  background-color: aqua;
   padding-right: 5px;
 }
 
@@ -42,6 +43,5 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: aqua;
 }
 /*# sourceMappingURL=playing.css.map */

@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./DieRoll.css";
 
-const DieRoll = ({ preSelect, sumRoll, rolled }) => {
+const DieRoll = ({
+  preSelect,
+  deselect,
+  sumRoll,
+  rolled,
+  setTwenties,
+  twenties,
+}) => {
   const [unselected, setUnselected] = useState(true);
 
   const selected = () => {
@@ -13,7 +20,12 @@ const DieRoll = ({ preSelect, sumRoll, rolled }) => {
     if (preSelect) {
       selected();
     }
-  }, []);
+    return () => {
+      if (twenties !== []) {
+        setTwenties([]);
+      }
+    };
+  }, [deselect]);
 
   return (
     <div>

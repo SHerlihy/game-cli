@@ -5,15 +5,17 @@
 .playing {
   width: 100%;
   height: 100%;
+  background: rgb(25, 25, 25);
+  color: rgb(205, 205, 205);
+  font-family: Georgia, "Times New Roman", Times, serif;
   .top-play {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 10vh;
-    background-color: aquamarine;
+
     .gameID {
-      background-color: aqua;
       padding-right: 5px;
     }
   }
@@ -25,7 +27,6 @@
       display: flex;
       width: 25vw;
       flex-direction: column;
-      background-color: aqua;
     }
   }
 }

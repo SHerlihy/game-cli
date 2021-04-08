@@ -10,18 +10,17 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: indigo;
+  background: #2d2d2d;
 }
 
 .wrestle-wrapper .wrestling {
-  width: 90vh;
   height: 90vh;
+  width: 90vh;
   position: relative;
   margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: orange;
   overflow: hidden;
 }
 
@@ -54,182 +53,214 @@
 .wrestle-wrapper .wrestling .o-three {
   position: absolute;
   background-color: green;
-  width: 20px;
-  left: 10%;
-  top: 15%;
-  -webkit-transform-origin: center top;
-          transform-origin: center top;
+  left: 40%;
+  bottom: 14%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
   height: 55%;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
 }
 
 .wrestle-wrapper .wrestling .p-three {
   position: absolute;
-  background-color: brown;
-  width: 20px;
-  left: 90%;
+  left: 60%;
   bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  background: brown;
   height: 55%;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
 }
 
 .wrestle-wrapper .wrestling .p-four {
   position: absolute;
-  background-color: brown;
-  width: 20px;
-  left: 90%;
+  left: 60%;
   bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
-  height: 55%;
-  -webkit-transform: rotate(-60deg);
-          transform: rotate(-60deg);
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  background: brown;
+  height: 44%;
+  -webkit-transform: rotate(24deg);
+          transform: rotate(24deg);
+  z-index: 1;
 }
 
 .wrestle-wrapper .wrestling .o-two {
   position: absolute;
   background-color: green;
-  width: 20px;
-  left: 10%;
-  top: 15%;
-  -webkit-transform-origin: center top;
-          transform-origin: center top;
+  left: 40%;
+  bottom: 14%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
   height: 55%;
-  -webkit-transform: rotate(-30deg);
-          transform: rotate(-30deg);
+  -webkit-transform: rotate(44deg);
+          transform: rotate(44deg);
+  z-index: 2;
 }
 
 .wrestle-wrapper .wrestling .p-five {
   position: absolute;
-  background-color: brown;
-  width: 20px;
-  left: 90%;
+  left: 60%;
   bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
-  height: 65%;
-  -webkit-transform: rotate(-75deg);
-          transform: rotate(-75deg);
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  background: brown;
+  height: 36%;
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+  z-index: 1;
 }
 
 .wrestle-wrapper .wrestling .o-one {
   position: absolute;
   background-color: green;
-  width: 20px;
-  left: 10%;
-  top: 15%;
-  -webkit-transform-origin: center top;
-          transform-origin: center top;
-  height: 60%;
-  -webkit-transform: rotate(-15deg);
-          transform: rotate(-15deg);
+  left: 40%;
+  bottom: 14%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  height: 55%;
+  -webkit-transform: rotate(70deg);
+          transform: rotate(70deg);
+  z-index: 2;
 }
 
 .wrestle-wrapper .wrestling .p-six {
   position: absolute;
-  background-color: brown;
-  width: 20px;
-  left: 90%;
+  left: 60%;
   bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
-  height: 78%;
-  -webkit-transform: rotate(-90deg);
-          transform: rotate(-90deg);
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  background: brown;
+  height: 55%;
+  -webkit-transform: rotate(88deg);
+          transform: rotate(88deg);
 }
 
 .wrestle-wrapper .wrestling .o-zero {
   position: absolute;
   background-color: green;
-  width: 20px;
-  left: 10%;
-  top: 15%;
-  -webkit-transform-origin: center top;
-          transform-origin: center top;
-  height: 75%;
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
+  left: 40%;
+  bottom: 14%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  height: 55%;
+  -webkit-transform: rotate(88deg);
+          transform: rotate(88deg);
 }
 
 .wrestle-wrapper .wrestling .o-four {
   position: absolute;
   background-color: green;
-  width: 20px;
-  left: 10%;
-  top: 15%;
-  -webkit-transform-origin: center top;
-          transform-origin: center top;
-  height: 60%;
-  -webkit-transform: rotate(-60deg);
-          transform: rotate(-60deg);
+  left: 40%;
+  bottom: 14%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  height: 45%;
+  -webkit-transform: rotate(-24deg);
+          transform: rotate(-24deg);
 }
 
 .wrestle-wrapper .wrestling .p-two {
   position: absolute;
-  background-color: brown;
-  width: 20px;
-  left: 90%;
+  left: 60%;
   bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  background: brown;
   height: 55%;
-  -webkit-transform: rotate(-30deg);
-          transform: rotate(-30deg);
+  -webkit-transform: rotate(-44deg);
+          transform: rotate(-44deg);
 }
 
 .wrestle-wrapper .wrestling .o-five {
   position: absolute;
   background-color: green;
-  width: 20px;
-  left: 10%;
-  top: 15%;
-  -webkit-transform-origin: center top;
-          transform-origin: center top;
-  height: 65%;
-  -webkit-transform: rotate(-75deg);
-          transform: rotate(-75deg);
+  left: 40%;
+  bottom: 14%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  height: 38%;
+  -webkit-transform: rotate(-58deg);
+          transform: rotate(-58deg);
 }
 
 .wrestle-wrapper .wrestling .p-one {
   position: absolute;
-  background-color: brown;
-  width: 20px;
-  left: 90%;
+  left: 60%;
   bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
-  height: 60%;
-  -webkit-transform: rotate(-15deg);
-          transform: rotate(-15deg);
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  background: brown;
+  height: 55%;
+  -webkit-transform: rotate(-70deg);
+          transform: rotate(-70deg);
 }
 
 .wrestle-wrapper .wrestling .o-six {
   position: absolute;
   background-color: green;
-  width: 20px;
-  left: 10%;
-  top: 15%;
-  -webkit-transform-origin: center top;
-          transform-origin: center top;
-  height: 78%;
-  -webkit-transform: rotate(-90deg);
-          transform: rotate(-90deg);
+  left: 40%;
+  bottom: 14%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  height: 55%;
+  -webkit-transform: rotate(-88deg);
+          transform: rotate(-88deg);
 }
 
 .wrestle-wrapper .wrestling .p-zero {
   position: absolute;
-  background-color: brown;
-  width: 20px;
-  left: 90%;
+  left: 60%;
   bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
-  height: 75%;
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
+  border-radius: 100% 100% 100% 100%;
+  width: 10vh;
+  height: 20vh;
+  background: brown;
+  height: 55%;
+  -webkit-transform: rotate(-88deg);
+          transform: rotate(-88deg);
 }
 /*# sourceMappingURL=wrestling.css.map */

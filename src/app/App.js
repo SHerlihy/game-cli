@@ -37,45 +37,30 @@ const App = () => {
     }
   };
 
-  if (myPos() === 0) {
-    return (
-      <div>
-        <p>Loser!</p>
-        <button onClick={reset}>New Game?</button>
-      </div>
-    );
-  } else if (myPos() === 6) {
-    return (
-      <div>
-        <p>Winner!</p>
-        <button onClick={reset}>New Game?</button>
-      </div>
-    );
-  } else {
-    return (
-      <div className="app">
-        {myID ? (
-          <Playing
-            setGame={setGame}
-            game={game}
-            socket={socket}
-            myID={myID}
-            myPos={myPos()}
-          />
-        ) : (
-          <NewGame
-            setMyID={setMyID}
-            myID={myID}
-            setGame={setGame}
-            game={game}
-            setInputID={setInputID}
-            inputID={inputID}
-            socket={socket}
-          />
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className="app">
+      {myID ? (
+        <Playing
+          setGame={setGame}
+          game={game}
+          socket={socket}
+          myID={myID}
+          myPos={myPos()}
+          reset={reset}
+        />
+      ) : (
+        <NewGame
+          setMyID={setMyID}
+          myID={myID}
+          setGame={setGame}
+          game={game}
+          setInputID={setInputID}
+          inputID={inputID}
+          socket={socket}
+        />
+      )}
+    </div>
+  );
 };
 
 export default App;

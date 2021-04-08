@@ -56,6 +56,18 @@ const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
     return stats.athletics;
   };
 
+  const formatSign = (statZero) => {
+    if (statZero !== "-" && statZero !== "+") {
+      return "+";
+    }
+    if (statZero === "+") {
+      return null;
+    }
+    if (statZero === "-") {
+      return null;
+    }
+  };
+
   return (
     <div className="roll">
       <Dice
@@ -67,7 +79,8 @@ const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
       />
       <div className="right-side">
         <p className="sum">
-          {sum} {statToUse()}
+          {sum} {formatSign(statToUse()[0])}
+          {statToUse()}
         </p>
         <button
           onClick={submitTotal}
