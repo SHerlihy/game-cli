@@ -21,6 +21,7 @@ const App = () => {
   const reset = () => {
     // we don't want to d/c we want to get new game
     // socket.close();
+    socket.off();
     setGame({});
     setMyID();
     setInputID();
