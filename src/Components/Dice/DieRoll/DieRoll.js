@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./DieRoll.css";
 
 const DieRoll = ({
@@ -8,8 +8,12 @@ const DieRoll = ({
   rolled,
   setTwenties,
   twenties,
+  doubleRoll,
+  setReroll,
 }) => {
   const [unselected, setUnselected] = useState(true);
+
+  const refUnselected = useRef(false);
 
   const selected = () => {
     setUnselected((prev) => !prev);
@@ -17,13 +21,19 @@ const DieRoll = ({
   };
 
   useEffect(() => {
+    if (!preSelect) {
+      refUnselected.current = true;
+    }
     if (preSelect) {
       selected();
     }
+
+    // the double roll happens and then this cleanup happens
     return () => {
-      if (twenties !== []) {
-        setTwenties([]);
+      if (!refUnselected) {
+        selected();
       }
+      setReroll(true);
     };
   }, [deselect]);
 

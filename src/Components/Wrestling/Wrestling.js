@@ -66,6 +66,8 @@ const Wrestling = ({ myPos }) => {
     <div className="wrestle-wrapper">
       <div className="wrestling">
         <div className="centerline"></div>
+        <div className="left-edge"></div>
+        <div className="right-edge"></div>
         <div className="opponent-arm">
           <div className="o-bicep"></div>
           <div className={opponentArm()}></div>

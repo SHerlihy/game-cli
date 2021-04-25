@@ -2,8 +2,27 @@
   padding-left: 20px;
 }
 
+.roles button {
+  border: none;
+}
+
+.roles button:focus {
+  outline: none;
+}
+
+.roles .p1 {
+  border-radius: 5px 0 0 5px;
+}
+
+.roles .p2 {
+  border-radius: 0 5px 5px 0;
+}
+
 .selected {
-  background: -webkit-gradient(linear, left top, left bottom, from(chartreuse), to(grey));
-  background: linear-gradient(chartreuse, grey);
+  background: chartreuse;
+}
+
+.unselected {
+  background: coral;
 }
 /*# sourceMappingURL=roles.css.map */

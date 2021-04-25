@@ -32,17 +32,10 @@ const Roles = ({ socket, setGame, game, myID }) => {
     <div className="roles">
       <button
         onClick={handleRole}
-        className={game[myID] === "p1" ? "selected" : "unselected"}
+        className={`p1 ${game[myID] === "p1" ? "selected" : "unselected"}`}
         value="p1"
       >
         p1
-      </button>
-      <button
-        onClick={handleRole}
-        className={game[myID] === "p2" ? "selected" : "unselected"}
-        value="p2"
-      >
-        p2
       </button>
       <button
         onClick={handleRole}
@@ -50,6 +43,13 @@ const Roles = ({ socket, setGame, game, myID }) => {
         value="spectator"
       >
         spectator
+      </button>
+      <button
+        onClick={handleRole}
+        className={`p2 ${game[myID] === "p2" ? "selected" : "unselected"}`}
+        value="p2"
+      >
+        p2
       </button>
     </div>
   );

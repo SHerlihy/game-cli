@@ -3,6 +3,8 @@
 .app {
   min-height: 100vh;
   min-width: 100%;
-  background-color: palegreen;
+  background: #191919;
+  color: #ffe18c;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 /*# sourceMappingURL=app.css.map */

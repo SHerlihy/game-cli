@@ -1,7 +1,22 @@
 .roles {
   padding-left: 20px;
+  button {
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  .p1 {
+    border-radius: 5px 0 0 5px;
+  }
+  .p2 {
+    border-radius: 0 5px 5px 0;
+  }
 }
 
 .selected {
-  background: linear-gradient(chartreuse, grey);
+  background: chartreuse;
+}
+.unselected {
+  background: coral;
 }

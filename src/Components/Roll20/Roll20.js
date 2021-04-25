@@ -1,34 +1,39 @@
-import React, { useState, useEffect } from "react";
-import DieRoll from "../Dice/DieRoll/DieRoll";
+import React, { useState, useEffect, useRef } from "react";
+import ReactDOM from "react-dom";
 import "./roll20.css";
 
-const Roll20 = ({ addTwenty, twenties, setTwenties, sumRoll }) => {
+const Roll20 = ({ sum, addTwenty, twenties, setTwenties, sumRoll }) => {
   const [rollWith, setRollWith] = useState({
     normal: true,
     advantage: false,
     disadvantage: false,
   });
-  const [deselect, setDeselect] = useState(false);
+  const [unselected, setUnselected] = useState([false, true]);
 
-  // const preSelectedRoll = () => {
-  //   if (rollWith.advantage) {
-  //     const higher = twenties.reduce((acc, red) => {
-  //       acc[1] > red[1] ? acc : red;
-  //     });
-  //     return higher[0];
-  //   }
-  //   if (rollWith.disadvantage) {
-  //     const lower = twenties.reduce((acc, red) => {
-  //       acc[1] < red[1] ? acc : red;
-  //     });
-  //     return lower[0];
-  //   }
-  //   if (rollWith.normal) {
-  //     return twenties[0][0];
-  //   }
-  // };
+  const rolling = useRef(false);
+  const rollType = useRef(false);
+
+  const newTwenties = useRef(false);
+
+  useEffect(() => {
+    console.log("effect select");
+    console.log(unselected[0] === true && unselected[1] === true);
+    if (unselected[0] === true && unselected[1] === true && rolling.current) {
+      doubleRoll();
+    }
+    if (unselected[0] === true && unselected[1] === true && rollType.current) {
+      rollWithClick(rollType.current);
+    }
+  }, [unselected]);
+
+  useEffect(() => {
+    if (newTwenties.current) {
+      selectNadd();
+    }
+  }, [twenties]);
 
   const rollWithClick = (rolling) => {
+    rollType.current = false;
     if (rolling === "advantage") {
       setRollWith({
         normal: false,
@@ -52,71 +57,111 @@ const Roll20 = ({ addTwenty, twenties, setTwenties, sumRoll }) => {
     }
   };
 
-  const deductPrev20 = () => {
-    setDeselect((prev) => !prev);
-  };
+  const highlight = () => {
+    if (rollWith.advantage === true) {
+      return highest();
+    }
+    if (rollWith.disadvantage === true) {
+      return lowest();
+    }
 
-  const doubleRoll = () => {
-    // let deducted = false;
-    // if (twenties !== []) {
-    //   deductPrev20();
-    //   deducted = true;
-    //   if (twenties !== [] && deducted) {
-    //     setTwenties(() => []);
-    //   }
-    // }
-
-    addTwenty();
-    addTwenty();
+    return setUnselected([false, true]);
   };
 
   const highest = () => {
-    if (twenties[0][1] > twenties[1][1]) {
-      return twenties[0];
+    if (twenties[0] > twenties[1]) {
+      setUnselected([false, true]);
     }
-    if (twenties[1][1] > twenties[0][1]) {
-      return twenties[1];
+    if (twenties[1] > twenties[0]) {
+      setUnselected([true, false]);
     } else {
-      return false;
-    }
-  };
-  const lowest = () => {
-    console.log(twenties[0][1]);
-    if (twenties[0][1] < twenties[1][1]) {
-      return twenties[0];
-    }
-    if (twenties[1][1] < twenties[0][1]) {
-      return twenties[1];
-    } else {
-      return false;
+      setUnselected([false, true]);
     }
   };
 
-  // const lowest = () => {
-  //   const low = () => {
-  //     twenties.reduce((acc, cur) => {
-  //       acc.roll < cur.roll ? acc.roll : cur.roll;
-  //     });
-  //   };
-  //   return low();
-  // };
+  const lowest = () => {
+    if (twenties[0] < twenties[1]) {
+      setUnselected([false, true]);
+    }
+    if (twenties[1] < twenties[0]) {
+      setUnselected([true, false]);
+    } else {
+      setUnselected([false, true]);
+    }
+  };
+
+  const doubleRoll = () => {
+    rolling.current = false;
+    setTwenties([]);
+    addTwenty();
+    addTwenty();
+    newTwenties.current = true;
+  };
+
+  const addIn = () => {
+    if (unselected[1] === false) {
+      console.log("adding right");
+      return sumRoll(twenties[1], true);
+    }
+    console.log("adding left");
+    sumRoll(twenties[0], true);
+  };
+
+  const subOut = () => {
+    if (unselected[1] === false) {
+      console.log("subbing right");
+      return sumRoll(twenties[1], false);
+    }
+    console.log("subbing left");
+    sumRoll(twenties[0], false);
+  };
+
+  const subNunselect = (source, adv) => {
+    subOut();
+    setUnselected([true, true]);
+  };
+
+  const selectNadd = () => {
+    newTwenties.current = false;
+    highlight();
+    addIn();
+  };
+
+  const clickAdvantage = (adv) => {
+    rollType.current = adv;
+    subNunselect();
+    // rollWithClick(adv);
+    // selectNadd();
+  };
+
+  const clickRoll = () => {
+    rolling.current = true;
+    subNunselect();
+  };
+
   return (
     <div className="roll20">
       <button
-        onClick={() => rollWithClick("normal")}
+        onClick={() => {
+          clickAdvantage("normal");
+        }}
         className={`normal ${rollWith.normal ? "highlight" : "plain"}`}
       >
         Normal
       </button>
       <div className="mods">
         <button
-          onClick={() => rollWithClick("advantage")}
+          onClick={() => {
+            clickAdvantage("advantage");
+          }}
           className={`advantage ${rollWith.advantage ? "highlight" : "plain"}`}
         >
           Advantage
         </button>
         <button
-          onClick={() => rollWithClick("disadvantage")}
+          onClick={() => {
+            clickAdvantage("disadvantage");
+          }}
           className={`disadvantage ${
             rollWith.disadvantage ? "highlight" : "plain"
           }`}
@@ -126,45 +171,41 @@ const Roll20 = ({ addTwenty, twenties, setTwenties, sumRoll }) => {
       </div>
       <button
         onClick={() => {
-          doubleRoll();
-          deductPrev20();
-          // if (twenties !== []) {
-          //   console.log("firin remove");
-          //   setTwenties([]);
-          // }
+          clickRoll();
         }}
         className="do-roll"
       >
-        Roll 20
+        Roll 20 <i className="fas fa-dice-d20"></i>
       </button>
       <div className="twenties">
-        {/* <button onClick={addTwenty}>20</button> */}
-
-        {twenties.map((el, i, arr) => {
-          let preSelect = false;
-          if (rollWith.normal && i === 0) {
-            preSelect = true;
-          }
-          if (rollWith.advantage && highest() === el) {
-            preSelect = true;
-          }
-          if (rollWith.disadvantage && lowest() === el) {
-            preSelect = true;
-          }
-          return (
-            <DieRoll
-              preSelect={preSelect}
-              deselect={deselect}
-              key={el[0]}
-              sumRoll={sumRoll}
-              rolled={el[1]}
-              setTwenties={setTwenties}
-              twenties={twenties}
-            />
-          );
-        })}
+        <div>
+          <button className={` ${unselected[0] ? "unselected" : "selected"}`}>
+            {twenties[0]}
+          </button>
+        </div>
+        <div>
+          <button className={` ${unselected[1] ? "unselected" : "selected"}`}>
+            {twenties[1]}
+          </button>
+        </div>
       </div>
-      <button onClick={deductPrev20}>deselect</button>
+      <button onClick={selectNadd}>add</button>
+      <button onClick={subNunselect}>sub</button>
+      <button onClick={doubleRoll}>roll</button>
+      <button
+        onClick={() => {
+          rollWithClick("advantage");
+        }}
+      >
+        rollAdv
+      </button>
+      <button
+        onClick={() => {
+          console.log(sum);
+        }}
+      >
+        What's sum?
+      </button>
     </div>
   );
 };

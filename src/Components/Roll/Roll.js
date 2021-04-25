@@ -6,8 +6,8 @@ import "./roll.css";
 const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
   const [sum, setSum] = useState(0);
   const [subbed, setSubbed] = useState("0");
-  const [twenties, setTwenties] = useState([]);
   const [fours, setFours] = useState([]);
+  const [twenties, setTwenties] = useState([0, 0]);
 
   //for testing...would love to have something in the test file instead
   if (process.env.NODE_ENV === "test") {
@@ -32,12 +32,11 @@ const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
     if (!subToRollUpdate.current) {
       socket.on("roll-update", ({ gameUpdate, resetting }) => {
         setGame(gameUpdate);
-        console.log("reset");
         if (resetting) {
-          console.log("reset");
           setSum(0);
           setSubbed("0");
           setFours([]);
+          console.log("resetting 20s");
           setTwenties([]);
         }
       });
@@ -71,6 +70,7 @@ const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
   return (
     <div className="roll">
       <Dice
+        sum={sum}
         setSum={setSum}
         twenties={twenties}
         setTwenties={setTwenties}

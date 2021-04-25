@@ -11,6 +11,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   background: #2d2d2d;
+  overflow: hidden;
 }
 
 .wrestle-wrapper .wrestling {
@@ -21,7 +22,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  overflow: hidden;
 }
 
 .wrestle-wrapper .wrestling .centerline {
@@ -32,29 +32,64 @@
   background-color: grey;
 }
 
+.wrestle-wrapper .wrestling .left-edge {
+  position: absolute;
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: grey;
+  -webkit-transform: rotate(-120deg);
+          transform: rotate(-120deg);
+}
+
+.wrestle-wrapper .wrestling .right-edge {
+  position: absolute;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: grey;
+  -webkit-transform: rotate(120deg);
+          transform: rotate(120deg);
+}
+
 .wrestle-wrapper .wrestling .o-bicep {
   position: absolute;
-  background-color: green;
-  height: 15%;
-  width: 20px;
-  left: 10%;
-  top: 0;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+  background-color: darkgreen;
+  border-radius: 50%;
+  height: 40vh;
+  width: 12vh;
+  left: 39%;
+  bottom: 15%;
 }
 
 .wrestle-wrapper .wrestling .p-bicep {
   position: absolute;
-  background-color: brown;
-  height: 15%;
-  width: 20px;
-  left: 90%;
-  bottom: 0;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+  background-color: #c83232;
+  border-radius: 50%;
+  height: 20vh;
+  width: 10vh;
+  left: 60%;
+  bottom: 15%;
+  z-index: 10;
 }
 
 .wrestle-wrapper .wrestling .o-three {
   position: absolute;
   background-color: green;
   left: 40%;
-  bottom: 14%;
+  bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   border-radius: 100% 100% 100% 100%;
@@ -100,7 +135,7 @@
   position: absolute;
   background-color: green;
   left: 40%;
-  bottom: 14%;
+  bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   border-radius: 100% 100% 100% 100%;
@@ -132,7 +167,7 @@
   position: absolute;
   background-color: green;
   left: 40%;
-  bottom: 14%;
+  bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   border-radius: 100% 100% 100% 100%;
@@ -163,7 +198,7 @@
   position: absolute;
   background-color: green;
   left: 40%;
-  bottom: 14%;
+  bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   border-radius: 100% 100% 100% 100%;
@@ -178,7 +213,7 @@
   position: absolute;
   background-color: green;
   left: 40%;
-  bottom: 14%;
+  bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   border-radius: 100% 100% 100% 100%;
@@ -208,7 +243,7 @@
   position: absolute;
   background-color: green;
   left: 40%;
-  bottom: 14%;
+  bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   border-radius: 100% 100% 100% 100%;
@@ -238,7 +273,7 @@
   position: absolute;
   background-color: green;
   left: 40%;
-  bottom: 14%;
+  bottom: 15%;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   border-radius: 100% 100% 100% 100%;

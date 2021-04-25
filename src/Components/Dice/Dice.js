@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import Roll20 from "../Roll20/Roll20";
 import DieRoll from "./DieRoll/DieRoll";
 const { v4: uuidv4 } = require("uuid");
 
-const Dice = ({ setSum, twenties, setTwenties, fours, setFours }) => {
+const Dice = ({ sum, setSum, twenties, setTwenties, fours, setFours }) => {
+  // const key = uuidv4();
   const addTwenty = () => {
     const roll = Math.ceil(Math.random() * 20);
-    const key = uuidv4();
-
     setTwenties((prev) => {
-      return [...prev, [key, roll]];
+      return [...prev, roll];
     });
   };
 
@@ -24,20 +24,25 @@ const Dice = ({ setSum, twenties, setTwenties, fours, setFours }) => {
 
   const sumRoll = (rolled, unselected) => {
     unselected
-      ? setSum((prev) => Number(prev) + Number(rolled))
-      : setSum((prev) => Number(prev) - Number(rolled));
+      ? setSum((prev) => {
+          return Number(prev) + Number(rolled);
+        })
+      : setSum((prev) => {
+          return Number(prev) - Number(rolled);
+        });
   };
 
   return (
     <div className="dice">
       <Roll20
+        sum={sum}
         addTwenty={addTwenty}
         twenties={twenties}
         setTwenties={setTwenties}
         sumRoll={sumRoll}
       />
       <div className="fours">
-        <button onClick={addFour}>4</button>
+        <button onClick={addFour}>D4 </button>
 
         {fours.map((el) => {
           return <DieRoll key={el[0]} sumRoll={sumRoll} rolled={el[1]} />;
