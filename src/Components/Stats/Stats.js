@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changeStrengthScore,
@@ -15,21 +15,13 @@ const Stats = ({ setStats }) => {
   );
   const dispatch = useDispatch();
 
-  // onChange={() => dispatch(changeStrengthScore(number))}
-
-  // const [score, setScore] = useState("10");
-  // const [athletics, setAthletics] = useState("+0");
-  // const [save, setSave] = useState("+0");
   const changeScore = (e) => {
-    // setScore(e.target.value);
     dispatch(changeStrengthScore(e.target.value));
   };
   const changeAthletics = (e) => {
-    // setAthletics(e.target.value);
     dispatch(changeAthleticsModifier(e.target.value));
   };
   const changeSave = (e) => {
-    // setSave(e.target.value);
     dispatch(changeStrengthSavingModifier(e.target.value));
   };
   useEffect(() => {
@@ -38,7 +30,7 @@ const Stats = ({ setStats }) => {
       athletics: athleticsModifier,
       save: strengthSavingModifier,
     });
-  }, [strengthScore, athleticsModifier, strengthSavingModifier]);
+  }, [strengthScore, athleticsModifier, strengthSavingModifier, setStats]);
   return (
     <div className="stats">
       <div className="stat">

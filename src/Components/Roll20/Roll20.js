@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useRef } from "react";
 import "./roll20.css";
 
-const Roll20 = () => {
-  const [selectedRoll, setSelectedRoll] = useState(0);
+const Roll20 = ({ sumRoll, current20Ref }) => {
+  const [rollWith, setRollWith] = useState("normal");
   const twentiesRef = useRef([0, 0]);
-  const advantage = useRef("normal");
+
+  const advantageRef = useRef("normal");
 
   const twoTwenties = () => {
     const theRoll = [];
@@ -19,29 +19,70 @@ const Roll20 = () => {
 
   const selecting = (rolls, adv) => {
     if (adv === "advantage") {
-      return setSelectedRoll(Math.max(...rolls));
+      current20Ref.current = Math.max(...rolls);
+      sumRoll(current20Ref.current, true);
+      return;
     }
     if (adv === "disadvantage") {
-      return setSelectedRoll(Math.min(...rolls));
+      current20Ref.current = Math.min(...rolls);
+      sumRoll(current20Ref.current, true);
+      return;
     }
-    setSelectedRoll(rolls[0]);
+    current20Ref.current = rolls[0];
+    sumRoll(rolls[0], true);
   };
 
   return (
     <div className="roll20">
       <button
+        className={`normal ${rollWith === "normal" ? "highlight" : "plain"}`}
         onClick={() => {
-          console.log(twentiesRef.current);
+          setRollWith("normal");
+          advantageRef.current = "normal";
+          sumRoll(current20Ref.current, false);
+          selecting(twentiesRef.current, advantageRef.current);
+        }}
+      >
+        Normal
+      </button>
+      <div className="mods">
+        <button
+          className={`${rollWith === "advantage" ? "highlight" : "plain"}`}
+          onClick={() => {
+            setRollWith("advantage");
+            advantageRef.current = "advantage";
+            sumRoll(current20Ref.current, false);
+            selecting(twentiesRef.current, advantageRef.current);
+          }}
+        >
+          Advantage
+        </button>
+        <button
+          className={`${rollWith === "disadvantage" ? "highlight" : "plain"}`}
+          onClick={() => {
+            setRollWith("disadvantage");
+            advantageRef.current = "disadvantage";
+            sumRoll(current20Ref.current, false);
+            selecting(twentiesRef.current, advantageRef.current);
+          }}
+        >
+          Disadvantage
+        </button>
+      </div>
+      <button
+        onClick={() => {
+          sumRoll(current20Ref.current, false);
           twoTwenties();
-          selecting(twentiesRef.current, "advantage");
+          selecting(twentiesRef.current, advantageRef.current);
         }}
         className="do-roll"
       >
         Roll 20 <i className="fas fa-dice-d20"></i>
       </button>
-      <p>{twentiesRef.current[0]}</p>
-      <p>{twentiesRef.current[1]}</p>
-      <p>{selectedRoll}</p>
+      <div className="twenties">
+        <p>{twentiesRef.current[0]}</p>
+        <p>{twentiesRef.current[1]}</p>
+      </div>
     </div>
   );
 };

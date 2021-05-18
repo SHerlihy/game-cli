@@ -2,17 +2,24 @@ import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import Dice from "../Dice/Dice";
 import "./roll.css";
+import { useDispatch, useSelector } from "react-redux";
+import { changeGame } from "../../Actions";
 
-const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
+//game, setGame
+
+const Roll = ({ myPos, stats, socket, myID }) => {
   const [sum, setSum] = useState(0);
   const [subbed, setSubbed] = useState("0");
-  const [fours, setFours] = useState([]);
-  const [twenties, setTwenties] = useState([0, 0]);
+  const current20Ref = useRef(0);
+  const resetRollsRef = useRef(false);
 
   //for testing...would love to have something in the test file instead
   if (process.env.NODE_ENV === "test") {
     socket = io("");
   }
+
+  const game = useSelector((state) => state.game);
+  const dispatch = useDispatch();
 
   const submitTotal = () => {
     const cliID = myID;
@@ -31,18 +38,18 @@ const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
   useEffect(() => {
     if (!subToRollUpdate.current) {
       socket.on("roll-update", ({ gameUpdate, resetting }) => {
-        setGame(gameUpdate);
+        // setGame(gameUpdate);
+        dispatch(changeGame(gameUpdate));
         if (resetting) {
           setSum(0);
           setSubbed("0");
-          setFours([]);
-          console.log("resetting 20s");
-          setTwenties([]);
+          current20Ref.current = 0;
+          resetRollsRef.current = true;
         }
       });
       subToRollUpdate.current = true;
     }
-  }, []);
+  }, [socket]);
 
   const statToUse = () => {
     if (myPos === 2) {
@@ -70,12 +77,10 @@ const Roll = ({ myPos, stats, socket, myID, game, setGame }) => {
   return (
     <div className="roll">
       <Dice
+        resetRollsRef={resetRollsRef}
+        current20Ref={current20Ref}
         sum={sum}
         setSum={setSum}
-        twenties={twenties}
-        setTwenties={setTwenties}
-        fours={fours}
-        setFours={setFours}
       />
       <div className="right-side">
         <p className="sum">

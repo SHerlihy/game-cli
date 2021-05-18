@@ -16,3 +16,9 @@ export const changeAthleticsModifier = (number) => {
     payload: number,
   };
 };
+export const changeGame = (gameObj) => {
+  return {
+    type: "CHANGE_GAME",
+    payload: gameObj,
+  };
+};

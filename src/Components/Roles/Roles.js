@@ -1,15 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import io from "socket.io-client";
 import "./roles.css";
+import { useDispatch, useSelector } from "react-redux";
+import { changeGame } from "../../Actions";
 
-const Roles = ({ socket, setGame, game, myID }) => {
-  // const [p1, setP1] = useState(false);
-  // const [p2, setP2] = useState(false);
-  // const [spectator, setSpectator] = useState(false);
+//setGame, game,
+
+const Roles = ({ socket, myID }) => {
   //for testing...would love to have something in the test file instead
   if (process.env.NODE_ENV === "test") {
     socket = io("");
   }
+
+  const game = useSelector((state) => state.game);
+
+  const dispatch = useDispatch();
 
   const handleRole = (e) => {
     const id = game.gameID;
@@ -22,11 +27,12 @@ const Roles = ({ socket, setGame, game, myID }) => {
   useEffect(() => {
     if (!subToRoleUpdate.current) {
       socket.on("role-update", ({ gameUpdate }) => {
-        setGame(gameUpdate);
+        // setGame(gameUpdate);
+        dispatch(changeGame(gameUpdate));
       });
       subToRoleUpdate.current = true;
     }
-  }, []);
+  }, [socket]);
 
   return (
     <div className="roles">
