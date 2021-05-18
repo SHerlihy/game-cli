@@ -5,13 +5,15 @@ import "./roll.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeGame } from "../../Actions";
 
-//game, setGame
+//game, setGame, myID
 
-const Roll = ({ myPos, stats, socket, myID }) => {
+const Roll = ({ myPos, stats, socket }) => {
   const [sum, setSum] = useState(0);
   const [subbed, setSubbed] = useState("0");
   const current20Ref = useRef(0);
   const resetRollsRef = useRef(false);
+
+  const myID = useSelector((state) => state.myID);
 
   //for testing...would love to have something in the test file instead
   if (process.env.NODE_ENV === "test") {

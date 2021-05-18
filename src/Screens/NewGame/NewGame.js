@@ -1,17 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeGame } from "../../Actions";
+import { changeGame, changeMyID } from "../../Actions";
 
 const NewGame = ({
   socket,
-  setMyID,
-  myID,
+  // setMyID,
+  // myID,
   // setGame,
   // game,
   setInputID,
   inputID,
 }) => {
   const game = useSelector((state) => state.game);
+  const myID = useSelector((state) => state.myID);
 
   const dispatch = useDispatch();
 
@@ -20,7 +21,8 @@ const NewGame = ({
   };
 
   socket.on("created-game", ({ newGame, cliID }) => {
-    setMyID(cliID);
+    // setMyID(cliID);
+    dispatch(changeMyID(cliID));
     // setGame(newGame);
     dispatch(changeGame(newGame));
   });
@@ -37,7 +39,8 @@ const NewGame = ({
   socket.on("joining-game", ({ joinGame }) => {
     const x = joinGame.clients.length;
 
-    setMyID(joinGame.clients[x - 1]);
+    dispatch(changeMyID(joinGame.clients[x - 1]));
+    // setMyID(joinGame.clients[x - 1]);
     // setGame(joinGame);
     dispatch(changeGame(joinGame));
   });

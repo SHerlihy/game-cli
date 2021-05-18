@@ -4,15 +4,16 @@ import "./roles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeGame } from "../../Actions";
 
-//setGame, game,
+//setGame, game, , myID
 
-const Roles = ({ socket, myID }) => {
+const Roles = ({ socket }) => {
   //for testing...would love to have something in the test file instead
   if (process.env.NODE_ENV === "test") {
     socket = io("");
   }
 
   const game = useSelector((state) => state.game);
+  const myID = useSelector((state) => state.myID);
 
   const dispatch = useDispatch();
 

@@ -22,3 +22,10 @@ export const changeGame = (gameObj) => {
     payload: gameObj,
   };
 };
+
+export const changeMyID = (id) => {
+  return {
+    type: "CHANGE_MY_ID",
+    payload: id,
+  };
+};

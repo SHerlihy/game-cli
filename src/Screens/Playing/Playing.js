@@ -15,9 +15,9 @@ const WinnerOverlay = (props) => {
   return <WinOverlay reset={props.reset} />;
 };
 
-//setGame, game,
+//setGame, game, myID,
 
-const Playing = ({ socket, myID, myPos, reset }) => {
+const Playing = ({ socket, myPos, reset }) => {
   const [stats, setStats] = useState({
     score: 10,
     athletics: 0,
@@ -39,8 +39,8 @@ const Playing = ({ socket, myID, myPos, reset }) => {
           document.getElementById("overlay")
         )}
       <div className="top-play">
-        {/* setGame={setGame} game={game} */}
-        <Roles socket={socket} myID={myID} />
+        {/* setGame={setGame} game={game} myID={myID}*/}
+        <Roles socket={socket} />
         <p className="gameID">Game ID: {game.gameID}</p>
       </div>
       <div className="game">
@@ -52,7 +52,7 @@ const Playing = ({ socket, myID, myPos, reset }) => {
             myPos={myPos}
             stats={stats}
             socket={socket}
-            myID={myID}
+            // myID={myID}
             // game={game}
             // setGame={setGame}
           />
