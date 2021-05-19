@@ -59,11 +59,11 @@ const Roll = () => {
   };
 
   const statToUse = () => {
-    if (myPos === 2) {
+    if (myPos === 4) {
       const scoreMod = parseInt((Number(strengthScore) - 10) / 2);
       return `${scoreMod}`;
     }
-    if (myPos === 1) {
+    if (myPos === 5) {
       return strengthSavingModifier;
     }
     return athleticsModifier;
