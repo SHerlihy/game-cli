@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import LoseOverlay from "../../Components/LoseOverlay/LoseOverlay";
 import WinOverlay from "../../Components/WinOverlay/WinOverlay";
@@ -6,7 +6,9 @@ import Roles from "../../Components/Roles/Roles";
 import Roll from "../../Components/Roll/Roll";
 import Stats from "../../Components/Stats/Stats";
 import Wrestling from "../../Components/Wrestling/Wrestling";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeGame, changeMyID } from "../../Actions";
+import { socket } from "../../constants";
 
 const LoserOverlay = (props) => {
   return <LoseOverlay reset={props.reset} />;
@@ -15,16 +17,39 @@ const WinnerOverlay = (props) => {
   return <WinOverlay reset={props.reset} />;
 };
 
-//setGame, game, myID,socket,
+//setGame, game, myID,socket,{ myPos, reset }
 
-const Playing = ({ myPos, reset }) => {
-  const [stats, setStats] = useState({
-    score: 10,
-    athletics: 0,
-    save: 0,
-  });
+const Playing = () => {
+  // const [stats, setStats] = useState({
+  //   score: 10,
+  //   athletics: 0,
+  //   save: 0,
+  // });
+  const [myPos, setMyPos] = useState(3);
 
   const game = useSelector((state) => state.game);
+  const myID = useSelector((state) => state.myID);
+  const dispatch = useDispatch();
+
+  const reset = () => {
+    socket.off();
+    dispatch(changeGame({}));
+    dispatch(changeMyID(false));
+  };
+
+  const calcPos = () => {
+    if (game[myID] === "p2") {
+      const posDiff = 3 - game.position;
+      const newPos = 3 + posDiff;
+      return newPos;
+    } else {
+      return game.position;
+    }
+  };
+
+  useEffect(() => {
+    setMyPos(calcPos());
+  }, [game.position]);
 
   return (
     <div className="playing">
@@ -47,15 +72,10 @@ const Playing = ({ myPos, reset }) => {
         <div className="play-station"></div>
         <Wrestling myPos={myPos} />
         <div className="play-station">
-          <Stats setStats={setStats} />
-          <Roll
-            myPos={myPos}
-            stats={stats}
-            // socket={socket}
-            // myID={myID}
-            // game={game}
-            // setGame={setGame}
-          />
+          {/* setStats={setStats} */}
+          <Stats />
+          {/* stats={stats} */}
+          <Roll myPos={myPos} />
         </div>
       </div>
     </div>

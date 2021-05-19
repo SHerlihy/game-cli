@@ -6,9 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeGame } from "../../Actions";
 import { socket } from "../../constants";
 
-//game, setGame, myID, socket
+//game, setGame, myID, socket,stats
 
-const Roll = ({ myPos, stats }) => {
+const Roll = ({ myPos }) => {
+  const strengthScore = useSelector((state) => state.strengthScore);
+  const athleticsModifier = useSelector((state) => state.athleticsModifier);
+  const strengthSavingModifier = useSelector(
+    (state) => state.strengthSavingModifier
+  );
+
   const [sum, setSum] = useState(0);
   const [subbed, setSubbed] = useState("0");
   const current20Ref = useRef(0);
@@ -56,13 +62,13 @@ const Roll = ({ myPos, stats }) => {
 
   const statToUse = () => {
     if (myPos === 2) {
-      const scoreMod = parseInt((Number(stats.score) - 10) / 2);
+      const scoreMod = parseInt((Number(strengthScore) - 10) / 2);
       return `${scoreMod}`;
     }
     if (myPos === 1) {
-      return stats.save;
+      return strengthSavingModifier;
     }
-    return stats.athletics;
+    return athleticsModifier;
   };
 
   const formatSign = (statZero) => {

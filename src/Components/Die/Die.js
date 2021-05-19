@@ -5,13 +5,14 @@ const { v4: uuidv4 } = require("uuid");
 const Die = ({ value, sumRoll, resetRollsRef }) => {
   const [rolls, setRolls] = useState({});
 
-  if (resetRollsRef.current) {
-    setRolls({});
-  }
+  //causes inf render loop
+  // if (resetRollsRef.current) {
+  //   setRolls({});
+  // }
 
-  if (resetRollsRef.current) {
-    setRolls({});
-  }
+  // if (resetRollsRef.current) {
+  //   setRolls({});
+  // }
 
   const addDie = () => {
     const roll = Math.ceil(Math.random() * value);

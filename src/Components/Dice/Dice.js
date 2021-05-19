@@ -1,6 +1,7 @@
 import React from "react";
 import Die from "../Die/Die";
 import Roll20 from "../Roll20/Roll20";
+import { v4 as uuidv4 } from "uuid";
 
 const Dice = ({ setSum, current20Ref, resetRollsRef }) => {
   const sumRoll = (rolled, unselected) => {
@@ -15,7 +16,14 @@ const Dice = ({ setSum, current20Ref, resetRollsRef }) => {
 
   const diceSet = (diceArr) => {
     return diceArr.map((e) => {
-      return <Die value={e} sumRoll={sumRoll} resetRollsRef={resetRollsRef} />;
+      return (
+        <Die
+          key={uuidv4()}
+          value={e}
+          sumRoll={sumRoll}
+          resetRollsRef={resetRollsRef}
+        />
+      );
     });
   };
 

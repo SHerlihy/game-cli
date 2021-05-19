@@ -24,13 +24,15 @@ const Stats = ({ setStats }) => {
   const changeSave = (e) => {
     dispatch(changeStrengthSavingModifier(e.target.value));
   };
-  useEffect(() => {
-    setStats({
-      score: strengthScore,
-      athletics: athleticsModifier,
-      save: strengthSavingModifier,
-    });
-  }, [strengthScore, athleticsModifier, strengthSavingModifier, setStats]);
+
+  // useEffect(() => {
+  //   setStats({
+  //     score: strengthScore,
+  //     athletics: athleticsModifier,
+  //     save: strengthSavingModifier,
+  //   });
+  // }, [strengthScore, athleticsModifier, strengthSavingModifier, setStats]);
+
   return (
     <div className="stats">
       <div className="stat">
