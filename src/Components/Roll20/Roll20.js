@@ -6,19 +6,15 @@ import "./roll20.css";
 const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
   const [rollWith, setRollWith] = useState("normal");
 
-  // const twentiesRef = useRef([0, 0]);
+  const advantageRef = useRef("normal");
+
   const twenties = useSelector((state) => state.twenties);
 
   const dispatch = useDispatch();
 
-  const advantageRef = useRef("normal");
-
-  // useEffect(() => {
-  //   if (resetRollsRef.current === true) {
-  //     twentiesRef.current = [0, 0];
-  //   }
-  //   console.log(`reset20: `);
-  // }, [resetRollsRef]);
+  useEffect(() => {
+    selecting(twenties, advantageRef.current);
+  }, [twenties]);
 
   const twoTwenties = () => {
     const theRoll = [];
@@ -29,7 +25,6 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
     theRoll.push(aTwenty());
 
     dispatch(changeTwenties(theRoll));
-    // twentiesRef.current = theRoll;
   };
 
   const selecting = (rolls, adv) => {
@@ -88,10 +83,7 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
         onClick={() => {
           twoTwenties();
           sumRoll(current20Ref.current, false);
-          return setTimeout(() => {
-            console.log(`from timeout:${twenties}`);
-            selecting(twenties, advantageRef.current);
-          }, 2000);
+          selecting(twenties, advantageRef.current);
         }}
         className="do-roll"
       >
@@ -101,7 +93,6 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
         <p>{twenties[0]}</p>
         <p>{twenties[1]}</p>
       </div>
-      <button>logit</button>
     </div>
   );
 };

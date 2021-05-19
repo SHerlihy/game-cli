@@ -53,7 +53,7 @@ const Roll = () => {
     const cliID = myID;
     const gameID = game.gameID;
     const combo = Number(sum) + Number(statToUse());
-    const total = `${combo}`;
+    const total = Number(combo);
     setSubbed(total);
     socket.emit("submit-total", { total, cliID, gameID });
   };
