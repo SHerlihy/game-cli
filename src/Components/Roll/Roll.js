@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import Dice from "../Dice/Dice";
 import "./roll.css";
 import { useDispatch, useSelector } from "react-redux";
-import { changeGame, changeSum } from "../../Actions";
+import { changeGame, changeSum, changeTwenties } from "../../Actions";
 import { socket } from "../../constants";
 
 const Roll = () => {
@@ -39,6 +39,7 @@ const Roll = () => {
         dispatch(changeGame(gameUpdate));
         if (resetting) {
           dispatch(changeSum(0));
+          dispatch(changeTwenties([0, 0]));
           setSubbed("0");
           current20Ref.current = 0;
           resetRollsRef.current = true;
@@ -79,7 +80,6 @@ const Roll = () => {
       return null;
     }
   };
-  console.log(sum);
 
   return (
     <div className="roll">

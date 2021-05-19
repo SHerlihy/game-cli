@@ -1,9 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeGame, changeSum, changeTwenties } from "../../Actions";
 import "./roll20.css";
 
 const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
   const [rollWith, setRollWith] = useState("normal");
-  const twentiesRef = useRef([0, 0]);
+
+  // const twentiesRef = useRef([0, 0]);
+  const twenties = useSelector((state) => state.twenties);
+
+  const dispatch = useDispatch();
 
   const advantageRef = useRef("normal");
 
@@ -11,6 +17,7 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
   //   if (resetRollsRef.current === true) {
   //     twentiesRef.current = [0, 0];
   //   }
+  //   console.log(`reset20: `);
   // }, [resetRollsRef]);
 
   const twoTwenties = () => {
@@ -20,7 +27,9 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
     };
     theRoll.push(aTwenty());
     theRoll.push(aTwenty());
-    twentiesRef.current = theRoll;
+
+    dispatch(changeTwenties(theRoll));
+    // twentiesRef.current = theRoll;
   };
 
   const selecting = (rolls, adv) => {
@@ -46,7 +55,7 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
           setRollWith("normal");
           advantageRef.current = "normal";
           sumRoll(current20Ref.current, false);
-          selecting(twentiesRef.current, advantageRef.current);
+          selecting(twenties, advantageRef.current);
         }}
       >
         Normal
@@ -58,7 +67,7 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
             setRollWith("advantage");
             advantageRef.current = "advantage";
             sumRoll(current20Ref.current, false);
-            selecting(twentiesRef.current, advantageRef.current);
+            selecting(twenties, advantageRef.current);
           }}
         >
           Advantage
@@ -69,7 +78,7 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
             setRollWith("disadvantage");
             advantageRef.current = "disadvantage";
             sumRoll(current20Ref.current, false);
-            selecting(twentiesRef.current, advantageRef.current);
+            selecting(twenties, advantageRef.current);
           }}
         >
           Disadvantage
@@ -77,18 +86,22 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
       </div>
       <button
         onClick={() => {
-          sumRoll(current20Ref.current, false);
           twoTwenties();
-          selecting(twentiesRef.current, advantageRef.current);
+          sumRoll(current20Ref.current, false);
+          return setTimeout(() => {
+            console.log(`from timeout:${twenties}`);
+            selecting(twenties, advantageRef.current);
+          }, 2000);
         }}
         className="do-roll"
       >
         Roll 20 <i className="fas fa-dice-d20"></i>
       </button>
       <div className="twenties">
-        <p>{twentiesRef.current[0]}</p>
-        <p>{twentiesRef.current[1]}</p>
+        <p>{twenties[0]}</p>
+        <p>{twenties[1]}</p>
       </div>
+      <button>logit</button>
     </div>
   );
 };

@@ -58,3 +58,10 @@ export const subRolled = (number) => {
     number,
   };
 };
+
+export const changeTwenties = (arr) => {
+  return {
+    type: "CHANGE_TWENTIES",
+    arr,
+  };
+};
