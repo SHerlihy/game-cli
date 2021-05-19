@@ -29,3 +29,11 @@ export const changeMyID = (id) => {
     payload: id,
   };
 };
+
+export const changeMyPos = (position, role) => {
+  return {
+    type: "CHANGE_MY_POS",
+    position,
+    role,
+  };
+};

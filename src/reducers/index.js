@@ -3,6 +3,7 @@ import strengthScore from "./strengthScore";
 import strengthSavingModifier from "./strengthSavingModifier";
 import game from "./game";
 import myID from "./myID";
+import myPos from "./myPos";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
@@ -11,6 +12,7 @@ const allReducers = combineReducers({
   strengthSavingModifier,
   game,
   myID,
+  myPos,
 });
 
 export default allReducers;

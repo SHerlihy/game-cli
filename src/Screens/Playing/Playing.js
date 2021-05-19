@@ -7,7 +7,7 @@ import Roll from "../../Components/Roll/Roll";
 import Stats from "../../Components/Stats/Stats";
 import Wrestling from "../../Components/Wrestling/Wrestling";
 import { useDispatch, useSelector } from "react-redux";
-import { changeGame, changeMyID } from "../../Actions";
+import { changeGame, changeMyID, changeMyPos } from "../../Actions";
 import { socket } from "../../constants";
 
 const LoserOverlay = (props) => {
@@ -25,10 +25,11 @@ const Playing = () => {
   //   athletics: 0,
   //   save: 0,
   // });
-  const [myPos, setMyPos] = useState(3);
+  // const [myPos, setMyPos] = useState(3);
 
   const game = useSelector((state) => state.game);
   const myID = useSelector((state) => state.myID);
+  const myPos = useSelector((state) => state.myPos);
   const dispatch = useDispatch();
 
   const reset = () => {
@@ -37,18 +38,10 @@ const Playing = () => {
     dispatch(changeMyID(false));
   };
 
-  const calcPos = () => {
-    if (game[myID] === "p2") {
-      const posDiff = 3 - game.position;
-      const newPos = 3 + posDiff;
-      return newPos;
-    } else {
-      return game.position;
-    }
-  };
-
   useEffect(() => {
-    setMyPos(calcPos());
+    if (game.position) {
+      dispatch(changeMyPos(game.position, game[myID]));
+    }
   }, [game.position]);
 
   return (
