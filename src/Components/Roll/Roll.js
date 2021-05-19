@@ -3,32 +3,50 @@ import io from "socket.io-client";
 import Dice from "../Dice/Dice";
 import "./roll.css";
 import { useDispatch, useSelector } from "react-redux";
-import { changeGame } from "../../Actions";
+import { changeGame, changeSum } from "../../Actions";
 import { socket } from "../../constants";
 
-//game, setGame, myID, socket,stats
-
-const Roll = ({ myPos }) => {
-  const strengthScore = useSelector((state) => state.strengthScore);
-  const athleticsModifier = useSelector((state) => state.athleticsModifier);
-  const strengthSavingModifier = useSelector(
-    (state) => state.strengthSavingModifier
-  );
-
-  const [sum, setSum] = useState(0);
-  const [subbed, setSubbed] = useState("0");
-  const current20Ref = useRef(0);
-  const resetRollsRef = useRef(false);
-
-  const myID = useSelector((state) => state.myID);
-
+const Roll = () => {
   //for testing...would love to have something in the test file instead
   if (process.env.NODE_ENV === "test") {
     socket = io("");
   }
 
+  const strengthScore = useSelector((state) => state.strengthScore);
+  const athleticsModifier = useSelector((state) => state.athleticsModifier);
+  const strengthSavingModifier = useSelector(
+    (state) => state.strengthSavingModifier
+  );
+  const myPos = useSelector((state) => state.myPos);
+  const sum = useSelector((state) => state.sum);
+  const myID = useSelector((state) => state.myID);
   const game = useSelector((state) => state.game);
+
+  const [subbed, setSubbed] = useState("0");
+
+  const current20Ref = useRef(0);
+  const resetRollsRef = useRef(false);
+  const subToRollUpdate = useRef(false);
+
   const dispatch = useDispatch();
+
+  // likely creating multiple listeners due to being inside a component that is continually re-rendering
+  // can't move outside component to mitigate until something to externally manage state is implemented
+
+  useEffect(() => {
+    if (!subToRollUpdate.current) {
+      socket.on("roll-update", ({ gameUpdate, resetting }) => {
+        dispatch(changeGame(gameUpdate));
+        if (resetting) {
+          dispatch(changeSum(0));
+          setSubbed("0");
+          current20Ref.current = 0;
+          resetRollsRef.current = true;
+        }
+      });
+      subToRollUpdate.current = true;
+    }
+  }, [socket]);
 
   const submitTotal = () => {
     const cliID = myID;
@@ -38,27 +56,6 @@ const Roll = ({ myPos }) => {
     setSubbed(total);
     socket.emit("submit-total", { total, cliID, gameID });
   };
-
-  // likely creating multiple listeners due to being inside a component that is continually re-rendering
-  // can't move outside component to mitigate until something to externally manage state is implemented
-
-  const subToRollUpdate = useRef(false);
-
-  useEffect(() => {
-    if (!subToRollUpdate.current) {
-      socket.on("roll-update", ({ gameUpdate, resetting }) => {
-        // setGame(gameUpdate);
-        dispatch(changeGame(gameUpdate));
-        if (resetting) {
-          setSum(0);
-          setSubbed("0");
-          current20Ref.current = 0;
-          resetRollsRef.current = true;
-        }
-      });
-      subToRollUpdate.current = true;
-    }
-  }, [socket]);
 
   const statToUse = () => {
     if (myPos === 2) {
@@ -82,15 +79,11 @@ const Roll = ({ myPos }) => {
       return null;
     }
   };
+  console.log(sum);
 
   return (
     <div className="roll">
-      <Dice
-        resetRollsRef={resetRollsRef}
-        current20Ref={current20Ref}
-        sum={sum}
-        setSum={setSum}
-      />
+      <Dice resetRollsRef={resetRollsRef} current20Ref={current20Ref} />
       <div className="right-side">
         <p className="sum">
           {sum} {formatSign(statToUse()[0])}

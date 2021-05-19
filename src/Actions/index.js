@@ -37,3 +37,24 @@ export const changeMyPos = (position, role) => {
     role,
   };
 };
+
+export const changeSum = (number) => {
+  return {
+    type: "CHANGE_SUM",
+    number,
+  };
+};
+
+export const addRolled = (number) => {
+  return {
+    type: "ADD_ROLLED",
+    number,
+  };
+};
+
+export const subRolled = (number) => {
+  return {
+    type: "SUB_ROLLED",
+    number,
+  };
+};

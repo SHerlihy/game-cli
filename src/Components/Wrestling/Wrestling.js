@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./wrestling.css";
 
-const Wrestling = ({ myPos }) => {
+const Wrestling = () => {
+  const myPos = useSelector((state) => state.myPos);
   const playerArm = () => {
     let arm = "";
     switch (myPos) {

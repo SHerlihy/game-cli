@@ -20,13 +20,6 @@ const WinnerOverlay = (props) => {
 //setGame, game, myID,socket,{ myPos, reset }
 
 const Playing = () => {
-  // const [stats, setStats] = useState({
-  //   score: 10,
-  //   athletics: 0,
-  //   save: 0,
-  // });
-  // const [myPos, setMyPos] = useState(3);
-
   const game = useSelector((state) => state.game);
   const myID = useSelector((state) => state.myID);
   const myPos = useSelector((state) => state.myPos);
@@ -57,7 +50,6 @@ const Playing = () => {
           document.getElementById("overlay")
         )}
       <div className="top-play">
-        {/* setGame={setGame} game={game} myID={myID} socket={socket}*/}
         <Roles />
         <p className="gameID">Game ID: {game.gameID}</p>
       </div>
@@ -65,9 +57,7 @@ const Playing = () => {
         <div className="play-station"></div>
         <Wrestling myPos={myPos} />
         <div className="play-station">
-          {/* setStats={setStats} */}
           <Stats />
-          {/* stats={stats} */}
           <Roll myPos={myPos} />
         </div>
       </div>

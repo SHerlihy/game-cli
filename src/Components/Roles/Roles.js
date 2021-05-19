@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeGame } from "../../Actions";
 import { socket } from "../../constants";
 
-//setGame, game, , myID socket
-
 const Roles = () => {
   //for testing...would love to have something in the test file instead
   if (process.env.NODE_ENV === "test") {
@@ -21,15 +19,16 @@ const Roles = () => {
   const handleRole = (e) => {
     const id = game.gameID;
     const role = e.target.value;
+    console.log(myID);
     socket.emit("set-role", { id, myID, role });
   };
 
+  //ensures only one sub to ROLE-update
   const subToRoleUpdate = useRef(false);
 
   useEffect(() => {
     if (!subToRoleUpdate.current) {
       socket.on("role-update", ({ gameUpdate }) => {
-        // setGame(gameUpdate);
         dispatch(changeGame(gameUpdate));
       });
       subToRoleUpdate.current = true;

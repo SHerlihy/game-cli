@@ -1,11 +1,17 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./roll20.css";
 
-const Roll20 = ({ sumRoll, current20Ref }) => {
+const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
   const [rollWith, setRollWith] = useState("normal");
   const twentiesRef = useRef([0, 0]);
 
   const advantageRef = useRef("normal");
+
+  // useEffect(() => {
+  //   if (resetRollsRef.current === true) {
+  //     twentiesRef.current = [0, 0];
+  //   }
+  // }, [resetRollsRef]);
 
   const twoTwenties = () => {
     const theRoll = [];

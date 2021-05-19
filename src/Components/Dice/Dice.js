@@ -2,16 +2,14 @@ import React from "react";
 import Die from "../Die/Die";
 import Roll20 from "../Roll20/Roll20";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addRolled, subRolled } from "../../Actions";
 
-const Dice = ({ setSum, current20Ref, resetRollsRef }) => {
+const Dice = ({ current20Ref, resetRollsRef }) => {
+  const dispatch = useDispatch();
+
   const sumRoll = (rolled, unselected) => {
-    unselected
-      ? setSum((prev) => {
-          return Number(prev) + Number(rolled);
-        })
-      : setSum((prev) => {
-          return Number(prev) - Number(rolled);
-        });
+    unselected ? dispatch(addRolled(rolled)) : dispatch(subRolled(rolled));
   };
 
   const diceSet = (diceArr) => {
@@ -29,7 +27,11 @@ const Dice = ({ setSum, current20Ref, resetRollsRef }) => {
 
   return (
     <div className="dice">
-      <Roll20 sumRoll={sumRoll} current20Ref={current20Ref} />
+      <Roll20
+        sumRoll={sumRoll}
+        current20Ref={current20Ref}
+        resetRollsRef={resetRollsRef}
+      />
       {diceSet([4, 6])}
     </div>
   );
