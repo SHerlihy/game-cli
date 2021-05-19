@@ -6,7 +6,7 @@ import Roles from "../../Components/Roles/Roles";
 import Roll from "../../Components/Roll/Roll";
 import Stats from "../../Components/Stats/Stats";
 import Wrestling from "../../Components/Wrestling/Wrestling";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const LoserOverlay = (props) => {
   return <LoseOverlay reset={props.reset} />;
@@ -15,9 +15,9 @@ const WinnerOverlay = (props) => {
   return <WinOverlay reset={props.reset} />;
 };
 
-//setGame, game, myID,
+//setGame, game, myID,socket,
 
-const Playing = ({ socket, myPos, reset }) => {
+const Playing = ({ myPos, reset }) => {
   const [stats, setStats] = useState({
     score: 10,
     athletics: 0,
@@ -39,8 +39,8 @@ const Playing = ({ socket, myPos, reset }) => {
           document.getElementById("overlay")
         )}
       <div className="top-play">
-        {/* setGame={setGame} game={game} myID={myID}*/}
-        <Roles socket={socket} />
+        {/* setGame={setGame} game={game} myID={myID} socket={socket}*/}
+        <Roles />
         <p className="gameID">Game ID: {game.gameID}</p>
       </div>
       <div className="game">
@@ -51,7 +51,7 @@ const Playing = ({ socket, myPos, reset }) => {
           <Roll
             myPos={myPos}
             stats={stats}
-            socket={socket}
+            // socket={socket}
             // myID={myID}
             // game={game}
             // setGame={setGame}

@@ -3,10 +3,11 @@ import io from "socket.io-client";
 import "./roles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeGame } from "../../Actions";
+import { socket } from "../../constants";
 
-//setGame, game, , myID
+//setGame, game, , myID socket
 
-const Roles = ({ socket }) => {
+const Roles = () => {
   //for testing...would love to have something in the test file instead
   if (process.env.NODE_ENV === "test") {
     socket = io("");

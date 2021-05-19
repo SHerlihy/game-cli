@@ -4,10 +4,11 @@ import Dice from "../Dice/Dice";
 import "./roll.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeGame } from "../../Actions";
+import { socket } from "../../constants";
 
-//game, setGame, myID
+//game, setGame, myID, socket
 
-const Roll = ({ myPos, stats, socket }) => {
+const Roll = ({ myPos, stats }) => {
   const [sum, setSum] = useState(0);
   const [subbed, setSubbed] = useState("0");
   const current20Ref = useRef(0);
