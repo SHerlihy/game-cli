@@ -65,3 +65,31 @@ export const changeTwenties = (arr) => {
     arr,
   };
 };
+
+export const setInputID = (input) => {
+  return {
+    type: "SET_INPUT_ID",
+    input,
+  };
+};
+
+export const addRoll = (params) => {
+  return {
+    type: "ADD_ROLL",
+  };
+};
+
+export const selectRoll = (rollClicked, select) => {
+  return {
+    type: "SELECT_ROLL",
+    rollClicked,
+    select,
+  };
+};
+
+export const setRollWith = (rollWith) => {
+  return {
+    type: "SET_ROLL_WITH",
+    payload: rollWith,
+  };
+};
