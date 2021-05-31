@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeGame, changeMyID } from "../../Actions";
+import { setInputID, changeGame, changeMyID } from "../../Actions";
 import { socket } from "../../constants";
 
 const NewGame = () => {
   const game = useSelector((state) => state.game);
   const myID = useSelector((state) => state.myID);
+  const inputID = useSelector((state) => state.inputID);
 
-  const [inputID, setInputID] = useState("");
+  const dispatch = useDispatch();
+
+  // const [inputID, setInputID] = useState("");
 
   useEffect(() => {
     return () => {
-      setInputID("");
+      dispatch(setInputID(""));
+      // setInputID("");
     };
   }, []);
-
-  const dispatch = useDispatch();
 
   const create = () => {
     socket.emit("create-game");
@@ -27,7 +29,8 @@ const NewGame = () => {
   });
 
   const handleInputID = (e) => {
-    setInputID(e.target.value);
+    dispatch(setInputID(e.target.value));
+    // setInputID(e.target.value);
   };
 
   const joinGame = (e) => {

@@ -1,4 +1,4 @@
-.lose-overlay {
+.overlay {
   position: fixed;
   color: aqua;
   z-index: 5;

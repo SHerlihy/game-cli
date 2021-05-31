@@ -73,17 +73,19 @@ export const setInputID = (input) => {
   };
 };
 
-export const addRoll = (params) => {
+export const addRoll = (value, die) => {
   return {
     type: "ADD_ROLL",
+    value,
   };
 };
 
-export const selectRoll = (rollClicked, select) => {
+export const toggleRollSelected = (rollClicked, select, value) => {
   return {
-    type: "SELECT_ROLL",
+    type: "TOGGLE_ROLL_SELECTED",
     rollClicked,
     select,
+    value,
   };
 };
 
@@ -91,5 +93,12 @@ export const setRollWith = (rollWith) => {
   return {
     type: "SET_ROLL_WITH",
     payload: rollWith,
+  };
+};
+
+export const setSubbed = (value) => {
+  return {
+    type: "SET_SUBBED",
+    payload: value,
   };
 };

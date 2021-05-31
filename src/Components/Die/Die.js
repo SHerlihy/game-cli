@@ -1,11 +1,19 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addRoll, toggleRollSelected } from "../../Actions";
 import "./die.css";
 const { v4: uuidv4 } = require("uuid");
 
 const Die = ({ value, sumRoll, resetRollsRef }) => {
-  // const [rolls, setRolls] = useState({});
-  const rolls = useSelector((state) => state.rolls);
+  const dispatch = useDispatch();
+
+  let rolls = useRef({});
+  const allRolls = useSelector((state) => state.rolls);
+
+  if (allRolls[value]) {
+    rolls.current = allRolls[value];
+  }
+
   //causes inf render loop
   // if (resetRollsRef.current) {
   //   setRolls({});
@@ -15,39 +23,24 @@ const Die = ({ value, sumRoll, resetRollsRef }) => {
   //   setRolls({});
   // }
 
-  // const addDie = () => {
-  //   const roll = Math.ceil(Math.random() * value);
-
-  //   setRolls((prev) => {
-  //     let thisRolls = { ...prev };
-  //     thisRolls[uuidv4()] = { value: roll, selected: false };
-  //     return thisRolls;
-  //   });
-  // };
-
   const selectRoll = (e) => {
-    const val = !rolls[e].selected;
-    sumRoll(rolls[e].value, val);
-    // setRolls((prev) => {
-    //   let thisRolls = { ...prev };
-    //   thisRolls[e].selected = val;
-    //   return thisRolls;
-    // });
+    const val = !rolls.current[e].selected;
+    sumRoll(rolls.current[e].value, val);
+    dispatch(toggleRollSelected(e, val, value));
   };
 
   return (
     <div>
-      <button onClick={addDie}>D{value}</button>
-      {Object.keys(rolls).map((e) => {
-        console.log(rolls[e].value);
+      <button onClick={() => dispatch(addRoll(value))}>D{value}</button>
+      {Object.keys(rolls.current).map((e) => {
         return (
           <button
-            className={rolls[e].selected ? "highlight" : "plain"}
+            className={rolls.current[e].selected ? "highlight" : "plain"}
             key={e}
             id={e}
             onClick={() => selectRoll(e)}
           >
-            {rolls[e].value}
+            {rolls.current[e].value}
           </button>
         );
       })}

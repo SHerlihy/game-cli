@@ -1,16 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeGame, changeSum, changeTwenties } from "../../Actions";
+import {
+  changeGame,
+  changeSum,
+  changeTwenties,
+  setRollWith,
+} from "../../Actions";
 import "./roll20.css";
 
 const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
-  const [rollWith, setRollWith] = useState("normal");
+  const dispatch = useDispatch();
 
   const advantageRef = useRef("normal");
 
   const twenties = useSelector((state) => state.twenties);
-
-  const dispatch = useDispatch();
+  const rollWith = useSelector((state) => state.rollWith);
 
   useEffect(() => {
     selecting(twenties, advantageRef.current);
@@ -47,7 +51,7 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
       <button
         className={`normal ${rollWith === "normal" ? "highlight" : "plain"}`}
         onClick={() => {
-          setRollWith("normal");
+          dispatch(setRollWith("normal"));
           advantageRef.current = "normal";
           sumRoll(current20Ref.current, false);
           selecting(twenties, advantageRef.current);
@@ -59,7 +63,7 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
         <button
           className={`${rollWith === "advantage" ? "highlight" : "plain"}`}
           onClick={() => {
-            setRollWith("advantage");
+            dispatch(setRollWith("advantage"));
             advantageRef.current = "advantage";
             sumRoll(current20Ref.current, false);
             selecting(twenties, advantageRef.current);
@@ -70,7 +74,7 @@ const Roll20 = ({ sumRoll, current20Ref, resetRollsRef }) => {
         <button
           className={`${rollWith === "disadvantage" ? "highlight" : "plain"}`}
           onClick={() => {
-            setRollWith("disadvantage");
+            dispatch(setRollWith("disadvantage"));
             advantageRef.current = "disadvantage";
             sumRoll(current20Ref.current, false);
             selecting(twenties, advantageRef.current);

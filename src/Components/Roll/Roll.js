@@ -3,7 +3,12 @@ import io from "socket.io-client";
 import Dice from "../Dice/Dice";
 import "./roll.css";
 import { useDispatch, useSelector } from "react-redux";
-import { changeGame, changeSum, changeTwenties } from "../../Actions";
+import {
+  changeGame,
+  changeSum,
+  changeTwenties,
+  setSubbed,
+} from "../../Actions";
 import { socket } from "../../constants";
 
 const Roll = () => {
@@ -21,8 +26,9 @@ const Roll = () => {
   const sum = useSelector((state) => state.sum);
   const myID = useSelector((state) => state.myID);
   const game = useSelector((state) => state.game);
+  const subbed = useSelector((state) => state.subbed);
 
-  const [subbed, setSubbed] = useState("0");
+  // const [subbed, setSubbed] = useState("0");
 
   const current20Ref = useRef(0);
   const resetRollsRef = useRef(false);
@@ -40,7 +46,8 @@ const Roll = () => {
         if (resetting) {
           dispatch(changeSum(0));
           dispatch(changeTwenties([0, 0]));
-          setSubbed("0");
+          // setSubbed("0");
+          dispatch(setSubbed("0"));
           current20Ref.current = 0;
           resetRollsRef.current = true;
         }
@@ -54,7 +61,8 @@ const Roll = () => {
     const gameID = game.gameID;
     const combo = Number(sum) + Number(statToUse());
     const total = Number(combo);
-    setSubbed(total);
+    // setSubbed(total);
+    dispatch(setSubbed(total));
     socket.emit("submit-total", { total, cliID, gameID });
   };
 

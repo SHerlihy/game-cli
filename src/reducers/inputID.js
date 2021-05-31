@@ -1,7 +1,7 @@
-const inputID = (state = "", action) => {
-  switch (action.type) {
+const inputID = (state = "", { type, input }) => {
+  switch (type) {
     case "SET_INPUT_ID":
-      return action.payload;
+      return input;
     default:
       return state;
   }

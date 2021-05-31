@@ -9,6 +9,7 @@ import twenties from "./twenties";
 import inputID from "./inputID";
 import rolls from "./rolls";
 import rollWith from "./rollWith";
+import subbed from "./subbed";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
@@ -23,6 +24,7 @@ const allReducers = combineReducers({
   inputID,
   rolls,
   rollWith,
+  subbed,
 });
 
 export default allReducers;
