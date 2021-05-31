@@ -14,15 +14,6 @@ const Die = ({ value, sumRoll, resetRollsRef }) => {
     rolls.current = allRolls[value];
   }
 
-  //causes inf render loop
-  // if (resetRollsRef.current) {
-  //   setRolls({});
-  // }
-
-  // if (resetRollsRef.current) {
-  //   setRolls({});
-  // }
-
   const selectRoll = (e) => {
     const val = !rolls.current[e].selected;
     sumRoll(rolls.current[e].value, val);

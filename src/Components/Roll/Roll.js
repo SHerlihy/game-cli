@@ -7,6 +7,7 @@ import {
   changeGame,
   changeSum,
   changeTwenties,
+  resetRolls,
   setSubbed,
 } from "../../Actions";
 import { socket } from "../../constants";
@@ -44,6 +45,7 @@ const Roll = () => {
       socket.on("roll-update", ({ gameUpdate, resetting }) => {
         dispatch(changeGame(gameUpdate));
         if (resetting) {
+          dispatch(resetRolls());
           dispatch(changeSum(0));
           dispatch(changeTwenties([0, 0]));
           // setSubbed("0");

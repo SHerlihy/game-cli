@@ -89,6 +89,12 @@ export const toggleRollSelected = (rollClicked, select, value) => {
   };
 };
 
+export const resetRolls = (params) => {
+  return {
+    type: "RESET_ROLLS",
+  };
+};
+
 export const setRollWith = (rollWith) => {
   return {
     type: "SET_ROLL_WITH",

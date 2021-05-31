@@ -13,6 +13,8 @@ const rolls = (state = {}, { type, rollClicked, select, value }) => {
     case "TOGGLE_ROLL_SELECTED":
       thisRolls[value][rollClicked].selected = select;
       return thisRolls;
+    case "RESET_ROLLS":
+      return {};
     default:
       return state;
   }
